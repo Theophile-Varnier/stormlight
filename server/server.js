@@ -1,0 +1,15 @@
+// src/server.js
+const bgioPkg = require("boardgame.io/server");
+const { Server, Origins } = bgioPkg.default ?? bgioPkg;
+
+const stormPkg = require("../dist/app/games/StormLight");
+const { StormLight } = stormPkg.default ?? stormPkg;
+
+// console.log(`My game is ${StormLight}`);
+
+const server = Server({
+  games: [StormLight],
+  origins: [Origins.LOCALHOST],
+});
+
+server.run(8000);
