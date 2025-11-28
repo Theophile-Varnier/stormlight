@@ -11,12 +11,14 @@
     "serve": "npm run transpile && node server/server.js"
   },
   "dependencies": {
-    "@3d-dice/dice-box-threejs": "^0.0.12",
     "boardgame.io": "^0.50.2",
+    "cannon-es": "^0.20.0",
     "esm": "^3.2.25",
     "next": "16.0.5",
+    "node-persist": "^4.0.4",
     "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "react-dom": "19.2.0",
+    "three": "^0.181.2"
   },
   "devDependencies": {
     "@swc/cli": "^0.7.9",

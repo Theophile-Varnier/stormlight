@@ -1,6 +1,6 @@
 // src/server.js
 const bgioPkg = require("boardgame.io/server");
-const { Server, Origins } = bgioPkg.default ?? bgioPkg;
+const { Server, Origins, FlatFile } = bgioPkg.default ?? bgioPkg;
 
 const stormPkg = require("../dist/app/games/StormLight");
 const { StormLight } = stormPkg.default ?? stormPkg;
@@ -10,6 +10,9 @@ const { StormLight } = stormPkg.default ?? stormPkg;
 const server = Server({
   games: [StormLight],
   origins: [Origins.LOCALHOST],
+  db: new FlatFile({
+    dir: "./db",
+  }),
 });
 
 server.run(8000);
