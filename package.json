@@ -8,9 +8,12 @@
     "start": "next start",
     "lint": "eslint",
     "transpile": "swc app --out-dir dist",
-    "serve": "npm run transpile && node server/server.js"
+    "serve": "pnpm run transpile && node server/server.js"
   },
   "dependencies": {
+    "@mantine/core": "^8.3.9",
+    "@mantine/form": "^8.3.9",
+    "@mantine/hooks": "^8.3.9",
     "boardgame.io": "^0.50.2",
     "cannon-es": "^0.20.0",
     "esm": "^3.2.25",
@@ -18,6 +21,7 @@
     "node-persist": "^4.0.4",
     "react": "19.2.0",
     "react-dom": "19.2.0",
+    "react-icons": "^5.5.0",
     "three": "^0.181.2"
   },
   "devDependencies": {
