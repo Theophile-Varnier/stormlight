@@ -21,7 +21,7 @@ export function PlayerBoard(
           light_intensity: 1,
           gravity_multiplier: 600,
           shadows: true,
-          baseScale: 80,
+          baseScale: 60,
           strength: 2,
           onRollComplete: (results) => {
             console.log(`I've got results :>> `, results);
@@ -77,7 +77,7 @@ export function PlayerBoard(
   }, [box, G, lastRollTimestamp, playerID, initialized]);
 
   return (
-    <div style={{ width: "50vw" }}>
+    <div>
       <div
         ref={mainRef}
         id={"scene-container" + playerID}

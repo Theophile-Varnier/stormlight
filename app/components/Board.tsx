@@ -27,24 +27,6 @@ export function Board(params: DefaultClientState) {
         justify="space-around"
         gap="md"
       >
-        <PlayerBoard
-          {...params}
-          playerName={
-            game?.players.find((p) => p.id == parseInt(playerID))?.name
-          }
-        />
-        <Group justify="center">
-          {game.players
-            .filter((p) => p.id != parseInt(playerID))
-            .map((p) => (
-              <PlayerBoard
-                {...params}
-                key={p.id}
-                playerID={p.id.toString()}
-                playerName={p.name}
-              />
-            ))}
-        </Group>
         <div>
           <button
             onClick={() => {
@@ -54,6 +36,24 @@ export function Board(params: DefaultClientState) {
             Roll Dice
           </button>
         </div>
+        <PlayerBoard
+          {...params}
+          playerName={
+            game?.players.find((p) => p.id == parseInt(playerID))?.name
+          }
+        />
+        <Group justify="center">
+          {game.players
+            .filter((p) => p.name && p.id != parseInt(playerID))
+            .map((p) => (
+              <PlayerBoard
+                {...params}
+                key={p.id}
+                playerID={p.id.toString()}
+                playerName={p.name}
+              />
+            ))}
+        </Group>
       </Stack>
     )
   );

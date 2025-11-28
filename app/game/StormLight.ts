@@ -13,6 +13,9 @@ export interface PlayerState {
 
 export interface StormLightState {
   rolls: Record<string, PlayerState>;
+  secret: {
+    historical: Record<string, PlayerState[]>;
+  };
 }
 
 export interface DefaultParameters {
@@ -42,10 +45,14 @@ const roll = ({ G, playerID, random }: DefaultMoveParameters, dice: Roll[]) => {
     lastRoll: rolls,
     lastRollTimestamp: new Date().getTime(),
   };
+  if (!(playerID in G.secret.historical)) {
+    G.secret.historical[playerID] = [];
+  }
+  G.secret.historical[playerID].push(G.rolls[playerID]);
 };
 
 export const StormLight: Game<StormLightState> = {
-  setup: () => ({ rolls: {} }),
+  setup: () => ({ rolls: {}, secret: { historical: {} } }),
   minPlayers: 2,
   maxPlayers: 8,
   name: "StormLight",
@@ -60,6 +67,13 @@ export const StormLight: Game<StormLightState> = {
     },
   },
   moves: {
-    roll,
+    roll: {
+      move: roll,
+      client: false,
+    },
+  },
+  playerView: ({ G }) => {
+    const { secret, ...res } = G;
+    return res;
   },
 };
